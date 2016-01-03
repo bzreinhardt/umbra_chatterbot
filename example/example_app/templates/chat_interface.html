@@ -1,0 +1,50 @@
+﻿{% load staticfiles %}
+<!DOCTYPE html>
+<html ng-app>
+<head>
+    <meta charset="utf-8" />
+    <title>HTML5 Chat with AngularJs, Spike-Engine and Twitter Bootstrap</title>
+
+    <link href= "{% static 'css/bootstrap.css' %}" rel="stylesheet">
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}" type="text/css" />
+    
+</head>
+<body>
+    <script src="{% static 'js/angular.min.js' %}" type="application/javascript"></script>
+    <script src="{% static 'js/jquery-1.11.1.min.js' %}" type="application/javascript"></script>
+    <script src="{% static 'js/spike-sdk.min.js' %}" type="application/javascript"></script>
+    <script src="{% static 'js/js.cookie.js' %}"></script>
+    <script type="text/javascript"> 
+        var chatterbotUrl = '{% url "chatterbot:chatterbot" %}'
+    </script>
+    
+
+    <div id="browser-window" ng-controller="NgChatCtrl">
+        <div id="viewport">
+            <div id="viewport-content">
+                <div class="bubble-container" ng-repeat="m in messages">
+                    <!--<div class="avatar avatar-{{m.side}}"><img src="{{m.avatar}}" /></div> -->
+                    {% verbatim %}
+                    <div class="bubble bubble-{{m.side}}">{{m.text}}</div>
+                    {% endverbatim %}
+                </div>
+            </div>
+        </div>
+
+        <form class="row row-chat" ng-submit="sendMessage()" id="test">
+            <div class="input-group">
+                <input type="text" class="form-control" ng-model="messageText" placeholder="Type your message" />
+
+                <span class="input-group-btn">
+                    <button type="submit" class="btn btn-primary">Send</button>
+                </span>
+            </div>
+
+        </form>
+        <script src="{% static 'js/client.js' %}" type="application/javascript"></script>
+    </div>
+
+
+
+</body>
+</html>

@@ -37,7 +37,7 @@ INSTALLED_APPS = (
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-
+    'authentication',
     'example_app',
     'django_chatterbot',
 )
@@ -110,3 +110,5 @@ STATICFILES_DIRS = (
         'static',
     ),
 )
+
+AUTH_USER_MODEL = 'authentication.Account'

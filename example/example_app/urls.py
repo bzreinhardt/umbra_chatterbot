@@ -17,11 +17,14 @@ from django.conf.urls import include, url
 from django.contrib import admin
 
 from example_app.views import ChatterBotAppView
+from example_app.views import TestChatterBotView
 
 
 urlpatterns = [
     url(r'^$', ChatterBotAppView.as_view()),
+    url(r'^test/', TestChatterBotView.as_view()),
     url(r'^admin/', include(admin.site.urls)),
+    url(r'^chatterbot/', include('django_chatterbot.urls')),
     url(r'^api/chatterbot/', include('django_chatterbot.urls', namespace='chatterbot')),
 ]
 
