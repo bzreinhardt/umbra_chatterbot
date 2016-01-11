@@ -11,20 +11,6 @@ app using
 Quick start
 -----------
 
-1. Add "django_chatterbot" to your INSTALLED_APPS setting like this::
-
-    INSTALLED_APPS = (
-        ...
-        'django_chatterbot',
-    )
-
-2. Include the django_chatterbot URLconf in your project urls.py like this::
-
-    url(r'^chatterbot/', include('django_chatterbot.urls')),
-
-3. Run `python manage.py migrate` to create the chatterbot models.
-
-4. Start the development server and visit http://127.0.0.1:8000/admin/
-   to create a poll (you'll need the Admin app enabled).
-
-5. POST to http://127.0.0.1:8000/chatterbot/ to start a conversation.
+1. Start server
+2. Go to localhost:8000/llama
+3. Enter text
