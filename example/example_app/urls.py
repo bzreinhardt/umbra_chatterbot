@@ -18,13 +18,17 @@ from django.contrib import admin
 
 from example_app.views import ChatterBotAppView
 from example_app.views import TestChatterBotView
+from example_app.views import InputView
 
 
 urlpatterns = [
-    url(r'^$', ChatterBotAppView.as_view()),
-    url(r'^test/', TestChatterBotView.as_view()),
-    url(r'^admin/', include(admin.site.urls)),
-    url(r'^chatterbot/', include('django_chatterbot.urls')),
-    url(r'^api/chatterbot/', include('django_chatterbot.urls', namespace='chatterbot')),
+    #url(r'^$', ChatterBotAppView.as_view()),
+    #url(r'^test/', TestChatterBotView.as_view()),
+    #url(r'^chatterbot/', include('django_chatterbot.urls')),
+    #url(r'^api/chatterbot/', include('django_chatterbot.urls', namespace='chatterbot')),
+    #url(r'^test/', include('django_chatterbot.urls')),
+    url(r'^llama',InputView.as_view()),
+    url(r'^input/', include('django_chatterbot.urls')),
+    
 ]
 

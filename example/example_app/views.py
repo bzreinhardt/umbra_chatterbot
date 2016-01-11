@@ -7,3 +7,8 @@ class ChatterBotAppView(TemplateView):
 
 class TestChatterBotView(TemplateView):
     template_name = "chat_interface.html"
+
+class InputView(TemplateView):
+    template_name = "text_parsing.html"
+    #def post(self, request, *args, **kwargs):
+    #    print ("got at thing")
