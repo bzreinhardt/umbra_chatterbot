@@ -220,15 +220,17 @@ function NgChatCtrl($scope, $timeout) {
             side: side
           })
         }
-
-        $("#viewport-content").animate({
-            bottom: $("#viewport-content").height() + 56 - $("#viewport").height()
-        }, 250);
-
-        // flip the side
+          // flip the side
         side = side == 'left' ? 'right' : 'left';
         $scope.messageText = "";
         $scope.$apply();
+
+      
+        $("#viewport-content").animate({
+            bottom: $("#viewport-content").height() - $("#viewport").height()
+        }, 100);
+
+      
       });
 
       $submit.fail(function() {
@@ -256,20 +258,22 @@ function NgChatCtrl($scope, $timeout) {
             text: $scope.messageText,
             side: side
           });
-        
-
-        // TODO(breinhardt) see if this actually matters
-        // this forces an update, but 
-        
+      
         //
-        
-        $("#viewport-content").animate({
-            bottom: $("#viewport-content").height() + 56 - $("#viewport").height()
-        }, 250);
-
         // flip the side
         side = side == 'left' ? 'right' : 'left';
         $scope.messageText = "";
+        // TODO(breinhardt) scope.apply causes errors but also 
+        // seems like the only way to get the message to push
+        // $scope.$apply();
+        
+        $("#viewport-content").animate({
+            bottom: $("#viewport-content").height() - $("#viewport").height()
+        }, 100);
+
+
+        
+
         
 
         // check whether the response is null in order to print
