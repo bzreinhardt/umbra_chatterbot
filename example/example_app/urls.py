@@ -27,8 +27,9 @@ urlpatterns = [
     #url(r'^chatterbot/', include('django_chatterbot.urls')),
     #url(r'^api/chatterbot/', include('django_chatterbot.urls', namespace='chatterbot')),
     #url(r'^test/', include('django_chatterbot.urls')),
-    url(r'^llama',InputView.as_view()),
-    url(r'^input/', include('django_chatterbot.urls')),
+    url(r'^external',InputView.as_view()),
+    url(r'^internal', InputView.as_view()),
+    url(r'^llama/', include('django_chatterbot.urls')),
     
 ]
 

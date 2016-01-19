@@ -4,8 +4,9 @@ from nltk.tokenize import PunktSentenceTokenizer
 from nltk.corpus import treebank
 from nltk.parse.generate import demo_grammar
 from nltk import CFG
-from stat_parser import Parser
+from stat_parser.parser import Parser
 from nltk.tree import ParentedTree
+import logging
 
 grammar = CFG.fromstring(demo_grammar)
 
@@ -33,32 +34,47 @@ class InputParser ():
 
     def traverse(self,t):
         t = ParentedTree.convert(t)
+        result = []
+        cd = ''
+        nns = ''
+        print "subtree = "
         print t
-        if t.height() == 3:
-            cd = ''
-            nns = ''
-            for child in t:
-                print "child is"
-                print str(child.label())
-                if str(child.label()) == 'CD':
-                    cd = str(child.leaves())
-                    print cd
-                if str(child.label()) == 'NNS':
-                    nns = str(child.leaves())
-                    print nns
+        for child in t:
+            print "child = "
+            print child
+            if str(child.label()) == 'CD':
+                cd = child.leaves()
+            if str(child.label()) == 'NNS':
+                nns = child.leaves()
             if cd != '' and nns != '':
                 print "found pair:"
-                print cd
-                print nns
-            return
-        else:
-            for child in t:
-                if t.height() > 2:
-                    self.traverse(child)
+                pair = {}
+                pair['cd'] = cd
+                pair['nns'] = nns
+                # stick things in a dictionary
+                print pair
+                result.append(pair)
+            if child.height() > 2:
+                    #append the returned dictionary to this dictionary
+                result.extend(self.traverse(child))
+        return result
 
     def find_noun_number_pair(self, input):
         tree = self.get_tree(input)
-        self.traverse(tree)
+        output = self.traverse(tree)
+        return output
+
+    #assumes an input in the form "foo:bar"
+    def find_key_value_pair(self, input):
+        split = input.split(':')
+        #assume the first thing is the key and
+        # everything else goes with it
+        log = {}
+        log[split[0]] = split[1:]
+        return log
+
+
+
 
 
 
